@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FALCON Agency Email Signature Generator</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="http://www.sen-natural.com/user/themes/taita/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://www.sen-natural.com/user/themes/taita/img/favicon/favicon-16x16.png">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <style type="text/css" media="all">
+    body {font-family:Arial;margin:20px;}
+  	.builder { background-color:#eeeeee; border-bottom:1px solid #ccc; font-family:Arial; padding: 10px 20px; color:#333333; margin:-20px -20px 0 -20px; }
+  	.builder input, .builder textarea { border:1px solid #ccc; border-radius:2px; background:#ffffff; padding:5px; margin-top:3px; }
+  	.builder button, input[type=submit] { background-color: #f7941d; border-radius: 2px; border: 0; color:#fff; text-transform:uppercase; padding:8px 15px; cursor:pointer; }
+  	.builder button:hover, input[type=submit]:hover { background-color: #ea7f00; }
+  </style>
+  <base href="">
+</head>
+<body>
+
+<div ng-app="">
+
+  <div class="builder">
+  <h1 style="color:#070735;margin-top:5px;">Brand Nation Email Signature Generator</h1>
+  <p><b>Please fill in your details:</b></p>
+  <table border="0" cellspacing="0" cellpadding="0" style="margin-top:-15px;">
+  	<tbody>
+  		<tr>
+  			<td style="padding:0;padding-right:80px;" valign="top">
+  				<p><b>Name : </b><br><input type="text" ng-model="name" placeholder="YOUR NAME" style="width:300px;height:20px;" tabindex="1"></p>
+  				<p><b>Office Tel : </b><br><input type="text" ng-model="tel" placeholder="12 345 6789" style="width:220px;height:20px;" tabindex="3"></p>
+  				<p><b>Email : </b><br><input type="text" ng-model="email" placeholder="email" style="width:150px;height:20px;" tabindex="5">@brand-nation.com</p>
+  				<p><b>Sign Off : </b><br><input type="text" ng-model="signoff" style="width:150px;height:20px;" ng-init="signoff='Best regards'" tabindex="6"></p>
+  			</td>
+  			<td style="padding-top: 0px;" valign="top">
+  				<p><b>Position Title : </b><br><input type="text" ng-model="title" placeholder="Position Title" style="width:300px;height:20px;" tabindex="2"></p>
+  				<p><b>Mobile : </b><br><input type="text" ng-model="mobile" placeholder="12 345 6789" style="width:270px;height:20px;" tabindex="4"></p>
+  				<p><b>Additional quote, info or certification :</b><br>
+  				<textarea ng-model="note" placeholder="Enter additional quote, info or certification (Optional)" style="width:300px;height:30px;" tabindex="7"></textarea>
+  				</p>
+  			</td>
+  		</tr>
+  	</tbody>
+  </table>
+  <button onclick="selectText('selectable')" style="float:left;" >Select & Copy signature</button>
+  <form name="downloadForm" id="downloadForm"  style="float:left;" method="post" action="http://69.195.124.250/~falconag/signature/signature.php">
+  <input type="hidden" name="signature-content" id="signature-content" value="" />
+  <button style="margin-left: 30px; margin-top: 0;" onclick="javascript:downloadText();">Download Outlook HTML</button>
+  &nbsp;&nbsp;&nbsp;<a href="outlook.html" style="font-size:12px;color:#333;" target="_new">Tips: How to add signature in Outlook</a>
+  </form>
+  <br><br> Then paste to your Gmail Settings page.
+  <br><br>
+  </div>
+
+<br><br>
+
+<div id="selectable">
+<span style="font-size:1px;color:#fff;">#End</span>
+<!--[if (gte mso 9)|(IE)]>
+	<style type="text/css" media="all">
+		pre { margin:0; }
+		.greyline {  mso-hide:all; display: none; font-size: 0; max-height: 0; line-height: 0; }
+    </style>
+<![endif]-->
+<table border="0" cellspacing="0" cellpadding="0" style="background:white">
+	<tbody>
+		<tr ng-if="signoff">
+			<td style="padding:0">
+				<span style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555;line-height:20px;">{{signoff}},</span><span style="font-size:12.0pt"></span>
+			</td>
+		</tr>
+		<tr style="height:16px" ng-if="signoff" class="gap">
+			<td style="padding:0in 0in 0in 0in;height:8px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:0">
+				<b><span style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735;text-transform:uppercase;line-height:24px;">{{name}}</span></b><span style="font-size:12.0pt"></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:0">
+				<span style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555;line-height:20px;">{{title}}</span><span style="font-size:12.0pt"></span>
+			</td>
+		</tr>
+		<tr style="height:8px" ng-if="note" class="gap">
+			<td style="padding:0in 0in 0in 0in;height:8px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+		<tr ng-if="note">
+			<td style="padding:0">
+				<span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555"><div><pre style="font-family:&quot;Arial&quot;;margin:0;">{{note}}</pre></div></span><span style="font-size:12.0pt"></span>
+			</td>
+		</tr>
+		<tr style="height:12px" class="gap">
+			<td style="padding:0in 0in 0in 0in;height:12px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%" style="">
+		<tbody>
+			<tr style="height:6px" class="gap">
+				<td style="padding:0in 0in 0in 0in;height:6px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;" bgcolor="#e4e4e4">
+					&nbsp;
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<![endif]-->
+<div style="height:6px;background:#e4e4e4;mso-hide:all;" class="greyline">
+</div>
+<table border="0" cellspacing="0" cellpadding="0" style="background:white">
+	<tbody>
+		<tr style="height:14px" class="gap">
+			<td style="padding:0;height:14px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:0;">
+				<a href="http://www.sen-natural.com/" target="_blank"><b><span style="font-size:19.0pt;font-family:&quot;Canaro Light&quot;;color:#070735;text-decoration:none"><img border="0" src="https://cdn.shopify.com/s/files/1/0021/4981/0249/files/email-sen.png?17677941146904847308" alt="Sen Natural" width="250"></span></b></a><span style="font-size:12.0pt"></span>
+			</td>
+		</tr>
+		<tr style="height:12px" class="gap">
+			<td style="padding:0;height:12px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" style="">
+	<tbody>
+		<tr>
+			<td valign="top" style="padding:0">
+				<!--[if (gte mso 9)|(IE)]>
+					<table border="0" cellspacing="0" cellpadding="0" style="">
+						<tbody>
+							<tr>
+								<td valign="top" style="padding:0 10px 0 0;">
+				<![endif]-->
+				<div style="max-width:250px;padding-right:10px;float:left;">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr ng-if="tel">
+								<td valign="top" style="width:20px;padding:0">
+									<b><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735">T:&nbsp;</span></b><span style="font-size:9.0pt"></span>
+								</td>
+								<td valign="top" style="padding:0">
+									<span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555"><a href="tel:{{tel}}" target="_blank" style="text-decoration:none;"><span style="font-family:&quot;Arial&quot;,sans-serif;color:#555555;text-decoration:none">{{tel}}</span></a></span><span style="font-size:9.0pt;color:#555555"></span>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" style="width:20px;padding:0">
+									<b><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735">M:&nbsp;</span></b><span style="font-size:9.0pt"></span>
+								</td>
+								<td valign="top" style="padding:0">
+									<span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555"><a href="<tel:></tel:>{{mobile}}" target="_blank" style="text-decoration:none;"><span style="font-family:&quot;Arial&quot;,sans-serif;color:#555555;text-decoration:none">{{mobile}}</span></a></span><span style="font-size:9.0pt;color:#555555"></span>
+								</td>
+							</tr>
+              <tr ng-if="!tel">
+								<td valign="top" style="padding:0">
+									<b><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735">E:&nbsp;</span></b><span style="font-size:9.0pt"></span>
+								</td>
+								<td valign="top" style="padding:0">
+									<span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555"><a href="mailto:{{email}}@brand-nation.com" target="_blank" style="text-decoration:none;"><span style="font-family:&quot;Arial&quot;,sans-serif;color:#555555;text-decoration:none">{{email}}@brand-nation.com</span></a></span><span style="font-size:9.0pt;color:#555555"></span>
+								</td>
+							</tr>
+							<tr ng-if="!tel">
+								<td valign="top" style="padding:0">
+									<b><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735">W:&nbsp;</span></b><span style="font-size:9.0pt"></span>
+								</td>
+								<td valign="top" style="padding:0">
+									<span style="font-size:9.0pt;color:#555555"><a href="http://www.sen-natural.com/" target="_blank" style="text-decoration:none;"><span style="font-family:&quot;Arial&quot;,sans-serif;color:#555555;text-decoration:none">www.sen-natural.com</span></a></span><span style="font-size:9.0pt;color:#555555"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--[if (gte mso 9)|(IE)]>
+								</td>
+								<td valign="top" style="padding:0">
+				<![endif]-->
+				<div style="max-width:320px;float:left;">
+					<table border="0" cellspacing="0" cellpadding="0" >
+						<tbody>
+              <tr ng-if="tel">
+                <td valign="top" style="padding:0">
+                  <b><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735">E:&nbsp;</span></b><span style="font-size:9.0pt"></span>
+                </td>
+                <td valign="top" style="padding:0">
+                  <span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555"><a href="mailto:{{email}}@brand-nation.com" target="_blank" style="text-decoration:none;"><span style="font-family:&quot;Arial&quot;,sans-serif;color:#555555;text-decoration:none">{{email}}@brand-nation.com</span></a></span><span style="font-size:9.0pt;color:#555555"></span>
+                </td>
+              </tr>
+              <tr ng-if="tel">
+                <td valign="top" style="padding:0">
+                  <b><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#070735">W:&nbsp;</span></b><span style="font-size:9.0pt"></span>
+                </td>
+                <td valign="top" style="padding:0">
+                  <span style="font-size:9.0pt;color:#555555"><a href="http://www.sen-natural.com/" target="_blank" style="text-decoration:none;"><span style="font-family:&quot;Arial&quot;,sans-serif;color:#555555;text-decoration:none">www.sen-natural.com</span></a></span><span style="font-size:9.0pt;color:#555555"></span>
+                </td>
+              </tr>
+						</tbody>
+					</table>
+				</div>
+				<!--[if (gte mso 9)|(IE)]>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				<![endif]-->
+			</td>
+		</tr>
+		<tr style="height:5px" class="gap">
+			<td style="padding:0;height:5px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" style="padding:0">
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td valign="top" style="padding:0">
+									<span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#555555">{{address}}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr style="height:14px" class="gap">
+			<td style="padding:0;height:14px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%" style="">
+		<tbody>
+			<tr style="height:6px" class="gap">
+				<td style="padding:0in 0in 0in 0in;height:6px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;" bgcolor="#e4e4e4">
+					&nbsp;
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<![endif]-->
+<div style="height:6px;background:#e4e4e4;mso-hide:all;" class="greyline">
+</div>
+<table border="0" cellspacing="0" cellpadding="0" style="">
+	<tbody>
+		<tr style="height:9px" class="gap">
+			<td style="padding:0;height:9px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:0">
+				<span style="font-size:10.5pt;color:#070735"><a href="http://www.sen-natural.com" target="_blank" style="text-decoration:none;"><b><span style="font-family:&quot;Arial&quot;,sans-serif;color:#070735;text-decoration:none">&raquo;&nbsp;Learn more about Sen Natural</span></b></a></span>
+			</td>
+		</tr>
+		<tr style="height:5px" class="gap">
+			<td style="padding:0;height:5px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" style="background:white">
+	<tbody>
+		<tr>
+			<td style="padding:0">
+				<div style="padding:0;line-height:10pt;">
+					<span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#aaa;line-height:10pt">The information transmitted is intended only for the person or entity to which it is addressed and may contain confidential and/or privileged material. Any review, retransmission, dissemination or other use of, or taking of any action in reliance upon, this information by persons or entities other than the intended recipient is prohibited. If you receive this in error, please contact the sender and delete the material from any computer.</span>
+				</div>
+			</td>
+		</tr>
+		<tr style="height:14px" class="gap">
+			<td style="padding:0;height:14px;font-size:1px;line-height:1%;mso-line-height-alt:0; mso-margin-top-alt:1px;">
+				&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function selectText(containerid) {
+        var range;
+		if (document.selection) {
+            range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select();
+        } else if (window.getSelection) {
+            range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().addRange(range);
+        }
+
+		try {
+			var successful = document.execCommand('copy');
+			var msg = successful ? 'successful' : 'unsuccessful';
+			alert('Copy was ' + msg);
+		} catch(err) {
+			alert('Please manually press copy keys.');
+		}
+
+		if (window.getSelection){
+			window.getSelection().removeAllRanges();
+		}
+    }
+
+	function downloadText() {
+        document.getElementById("signature-content").value = document.getElementById("selectable").innerHTML;
+		document.getElementById("downloadForm").submit();
+    }
+</script>
